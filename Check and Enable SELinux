@@ -1,0 +1,41 @@
+Checking and enabling SELinux in CentOS/RHEL
+Prerequisites: 
+  1. Sudo privilege
+  
+SELinux Modes: 
+  SELinux runs into three modes - 
+  1. Enforcing mode: This is the default mode. It blocks and logs actions that are against defined policy.
+  2. Permissive mode: Allows actions to take place and logs the events in detail. This mode is useful when testing SELinux features. Changing modes between      enforcing and permissive does not require a system reboot.
+  3. Disabled mode: Allows for all actions and does not log any activity. Changing to this mode requires a system reboot for it to apply. Learn more on          disabling SELinux.
+  
+  How to check the status of SELinux:
+  Login to your machine and run the following command in terminal.
+  
+  sestatus
+  
+  [root@bosdevxininf01 ~]# sestatus
+  SELinux status:                 disabled
+  
+How to Enable SELinux:
+
+sudo vi  /etc/selinux/config
+
+Update the line - 
+SELINUX=disabled
+
+You can set it to permissive or enforcing. Save the file and exit. Reboot the machine for the change to take effect.
+
+sudo reboot
+
+
+To change the mode from enforcing to permissive type:
+
+sudo setenforce 0
+
+To turn the enforcing mode back on, enter:
+
+sudo setenforce 1
+
+
+Changing the node from permissive to enforcing or viceversa doesn't require a reboot. 
+    
